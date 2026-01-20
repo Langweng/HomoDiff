@@ -1,0 +1,45 @@
+img_rgb_path: ""
+img_nir_path: ""
+dataset: 'flir'
+
+noise_sigma: 25
+batch_size: 8
+phase: "exit_train"   
+num_timestep: 1000
+seed: 1024
+
+n_iter: 1000000
+
+beta_schedule:
+  schedule: "linear"
+  n_timestep: 1000
+  linear_start: 0.0001
+  linear_end: 0.02
+
+model_path: ""
+
+diffusion_phase: "homo1"
+load_h: true
+test_level: false
+load_exit: false
+train_layers: false
+
+h_net_path1: ""
+h_net_path2: ""
+h_net_path3: ""
+exit_net_path: ""
+feature_path: ""
+
+result_path: ""
+save_path: ""
+
+val_freq: 5000
+print_freq: 100
+save_freq: 20000
+
+gpu_ids: null
+
+debug: false
+enable_wandb: false
+log_wandb_ckpt: false
+log_eval: false

@@ -1,0 +1,47 @@
+img_rgb_path: "/mnt/hdd1/gyh/rgb_nir_split/train/rgb"
+img_nir_path: "/mnt/hdd1/gyh/rgb_nir_split/train/nir"
+dataset: 'flir'
+
+noise_sigma: 50
+batch_size: 2
+phase: "train"   
+num_timestep: 1000
+seed: 1024
+
+n_iter: 1000000
+
+beta_schedule:
+  schedule: "linear"
+  n_timestep: 1000
+  linear_start: 0.0001
+  linear_end: 0.02
+
+model_path: "/mnt/ssd3/gyh/HomoDiff/pretrain/ir/checkpoint_epoch28_step140000.pth"
+
+diffusion_phase: "homo1"
+load_h: true
+test_level: false
+load_exit: false
+train_layers: false
+save_predict: false
+single_pair: false
+
+h_net_path1: "/mnt/ssd3/gyh/HomoDiff/debug/checkpoint_epoch94_step240000.pth"
+h_net_path2: "/mnt/ssd3/gyh/DMID_train/flir_layer3_checkpoint/checkpoint_epoch24_step120000.pth"
+h_net_path3: "/mnt/ssd3/gyh/DMID_train/flir_layer3_checkpoint/checkpoint_epoch24_step120000.pth"
+exit_net_path: "/mnt/ssd3/gyh/DMID_train/hypersim_exit_time/checkpoint_epoch10600_step60000.pth"
+feature_path: ""
+
+result_path: "/mnt/ssd3/gyh/HomoDiff/result"
+save_path: "/mnt/ssd3/gyh/HomoDiff/flir_ablation_training_stage1"
+
+val_freq: 5000
+print_freq: 100
+save_freq: 20000
+
+gpu_ids: null
+
+debug: false8
+enable_wandb: false
+log_wandb_ckpt: false
+log_eval: false

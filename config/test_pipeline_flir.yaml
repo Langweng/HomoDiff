@@ -1,0 +1,51 @@
+img_rgb_path: "/mnt/hdd1/gyh/rgb_nir_split/train/rgb"
+img_nir_path: "/mnt/hdd1/gyh/rgb_nir_split/train/nir"
+dataset: 'flir'
+
+noise_sigma: 25
+batch_size: 1
+phase: "train"   
+num_timestep: 1000
+seed: 1024
+
+n_iter: 1000000
+
+beta_schedule:
+  schedule: "linear"
+  n_timestep: 1000
+  linear_start: 0.0001
+  linear_end: 0.02
+
+model_path: "/mnt/ssd3/gyh/HomoDiff/pretrain/ir/checkpoint_epoch28_step140000.pth"
+
+diffusion_phase: "homo1"
+load_h: true
+test_level: true
+load_exit: true
+train_layers: false
+save_predict: true
+single_pair: false
+
+h_net_path1: "/mnt/ssd3/gyh/HomoDiff/flir_layer1_checkpoint/checkpoint_epoch90_step460000.pth"
+h_net_path1: "/mnt/ssd3/gyh/HomoDiff/flir_layer1_checkpoint/checkpoint_epoch90_step460000.pth"
+h_net_path2: "/mnt/ssd3/gyh/HomoDiff/flir_layer1_checkpoint/checkpoint_epoch90_step460000.pth"
+h_net_path3: "/mnt/ssd3/gyh/HomoDiff/flir_layer1_checkpoint/checkpoint_epoch90_step460000.pth"
+# h_net_path1: "/mnt/ssd3/gyh/compare_algorithm/MCNet/weights/flir_warp64.pth"
+# h_net_path2: "/mnt/ssd3/gyh/compare_algorithm/MCNet/weights/flir_warp64.pth"
+# h_net_path3: "/mnt/ssd3/gyh/compare_algorithm/MCNet/weights/flir_warp64.pth"
+exit_net_path: "/mnt/ssd3/gyh/HomoDiff/flir_exit_without_time/checkpoint_epoch1588_step20000.pth"
+
+result_txt: "/mnt/ssd3/gyh/HomoDiff/test_result/result_sigma50_flir_ablation_warp64.txt"
+result_path: "/mnt/ssd3/gyh/HomoDiff/result"
+save_path: "/mnt/ssd3/gyh/HomoDiff/hypersim_layer1_checkpoint"
+
+val_freq: 1000
+print_freq: 100
+save_freq: 20000
+
+gpu_ids: null
+
+debug: false
+enable_wandb: false
+log_wandb_ckpt: false
+log_eval: false
