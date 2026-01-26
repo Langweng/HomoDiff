@@ -1,0 +1,33 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /usr/local/cuda-12.1/bin/nvcc
+
+cflags = -pthread -B /mnt/ssd3/gyh/anaconda3/envs/ADFNet/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -O2 -Wall -fPIC -O2 -isystem /mnt/ssd3/gyh/anaconda3/envs/ADFNet/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/include -fPIC -O2 -isystem /mnt/ssd3/gyh/anaconda3/envs/ADFNet/include -fPIC -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/TH -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/THC -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/TH -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/THC -I/usr/local/cuda-12.1/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/include/python3.9 -c
+post_cflags = -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=at_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+cuda_cflags = -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/TH -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/THC -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/TH -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/lib/python3.9/site-packages/torch/include/THC -I/usr/local/cuda-12.1/include -I/mnt/ssd3/gyh/anaconda3/envs/ADFNet/include/python3.9 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=at_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_89,code=compute_89 -gencode=arch=compute_89,code=sm_89 -std=c++17
+cuda_dlink_post_cflags = 
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc --generate-dependencies-with-compile --dependency-output $out.d $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+
+
+build /mnt/ssd3/gyh/RHWF-master/ATT/build/temp.linux-x86_64-cpython-39/src/attention_cuda.o: compile /mnt/ssd3/gyh/RHWF-master/ATT/src/attention_cuda.cpp
+build /mnt/ssd3/gyh/RHWF-master/ATT/build/temp.linux-x86_64-cpython-39/src/attention_kernel.o: cuda_compile /mnt/ssd3/gyh/RHWF-master/ATT/src/attention_kernel.cu
+
+
+
+
+
+
