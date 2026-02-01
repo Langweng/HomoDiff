@@ -15,7 +15,7 @@ import yaml
 from pathlib import Path
 from model import data_transform_reverse
 from guided_diffusion.train_util import tensor2img, save_img, calculate_psnr, load_partial_weights
-from mc_dataset import datasets
+from dataset import datasets
 import random
 import json
 from guided_diffusion.h_net.network import Classify_loss_time
