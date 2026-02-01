@@ -19,7 +19,7 @@ The [RGB-NIR](https://www.epfl.ch/labs/ivrl/research/downloads/rgb-nir-scene-dat
 
 ## Training
 ### 1. Training Config
-Please modify the file in [config.yml](https://github.com/Langweng/HomoDiff/blob/main/config/train_homo_flir.yaml) for different training stages
+Please modify the file in [config](https://github.com/Langweng/HomoDiff/blob/main/config/train_homo_flir.yaml) for different training stages
 - Train from the DHE backbone
 ```
 phase：'train'
