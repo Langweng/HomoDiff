@@ -23,7 +23,7 @@ Please modify the file in [config](https://github.com/Langweng/HomoDiff/blob/mai
 - Train from the DHE backbone
 ```
 phase：'train'
-diffusion_phase:'homo1' or 'homo2' or 'homo3
+diffusion_phase:'homo1' or 'homo2' or 'homo3'
 ```
 - Train from the AHS subnet
 ```
