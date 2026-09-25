@@ -38,3 +38,6 @@ CUDA_VISIBLE_DEVICES=0 python main_train.py --config /config/train_homo_flir.yam
 
 ## Checkpoint
 We will release our checkpoint after the paper is accepted.
+
+## Connect me
+If you have any problem, feel free to connect with sy2402404@buaa.edu.cn
